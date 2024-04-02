@@ -1,4 +1,4 @@
-namespacePrefixes:
+namespacePrefixes:                       # namespace prefixes to be used in the result framing
   adms: http://www.w3.org/ns/adms#
   dcat: http://www.w3.org/ns/dcat#
   dcatap: http://data.europa.eu/r5r/
@@ -17,49 +17,49 @@ namespacePrefixes:
   xsd: http://www.w3.org/2001/XMLSchema#
 
 dataSources:
-  nodeShapes:
-    resolver: sparql
-    location: sparql/nodeShapes.rq
-    source:
+  nodeShapes:                             # name of the data source
+    resolver: sparql                      # indicates the SPARQL resolver type
+    location: sparql/nodeShapes.rq        # location of the SPARQL query
+    source:                               # source of the data to be queried
       - /shapes/dcat-ap-SHACL.ttl
       - /shapes/dcat-ap-OPT.ttl
       - /shapes/dcat-ap-nl-SHACL.ttl
       - /shapes/dcat-ap-nl-OPT.ttl
       - /shapes/optionaliteit.ttl
-    resultFrame:
-      _key: targetClass
-      targetClass:
-        _value: targetClass
-        _prefix: true
-      propertyShapes:
-        _key: property
-        _orderBy: +propertyName
-        propertyName: propertyName
-        property: property
-        propertyPrefixed:
+    resultFrame:                          # frame to be used for the result  
+      _key: targetClass                   # key with which a node is identified
+      targetClass:                        # target class property of the node        
+        _value: targetClass               # value of the target class property from the SPARQL query
+        _prefix: true                     # indicates that the value should be prefixed using the namespace prefixes
+      propertyShapes:                     # property shapes property of the node
+        _key: property                    # key with which a property shape is identified
+        _orderBy: +propertyName           # order the property shapes by the value of its propertyName property. + indcates ascending order.  
+        propertyName: propertyName        # property name property of the property shape
+        property: property                # property property of the property shape
+        propertyPrefixed:                 # prefixed property property of the property shape
           _value: property
           _prefix: true
-        description: description
-        class: class
-        classPrefixed:
+        description: description          # description property of the property shape
+        class: class                      # class property of the property shape
+        classPrefixed:                    # prefixed class property of the property shape
           _value: class
           _prefix: true
-        datatype: datatype
-        datatypePrefixed:
+        datatype: datatype                # datatype property of the property shape
+        datatypePrefixed:                 # prefixed datatype property of the property shape
           _value: datatype
           _prefix: true
-        nodeKind: nodeKind
-        nodeKindPrefixed:
+        nodeKind: nodeKind                # node kind property of the property shape
+        nodeKindPrefixed:                 # prefixed node kind property of the property shape
           _value: nodeKind
           _prefix: true
-        minCount: minCount
-        maxCount: maxCount
-        optionaliteit:
+        minCount: minCount                # min count property of the property shape
+        maxCount: maxCount                # max count property of the property shape
+        optionaliteit:                    # optionaliteit property of the property shape
           _value: optionaliteit
-          _type: set
+          _type: set                      # indicates that the value should be treated as a set
 
-templates:
-  - templateLocation: klassen.md
-    outputLocation: /doc/gen/
+templates:                                # List of templates to be used for generating the documentation
+  - templateLocation: klassen.md          # location of the template 
+    outputLocation: /doc/gen/             # location where the templated results should be stored
   - templateLocation: ondersteunendeKlassen.md
     outputLocation: /doc/gen/
